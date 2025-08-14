@@ -1,0 +1,188 @@
+
+body{
+      background: radial-gradient(1200px 600px at 10% 10%, #07203a 0%, var(--bg) 40%), var(--bg);
+}
+h1{
+      text-align: center;
+      color: #ccc;
+}
+form {
+      width: 90%;
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #e7e2e2;
+      box-shadow: 0 0 10px rgba(0, 0, 0);
+}
+.account{
+      display: flex;
+      margin-left: 20px;
+}
+form p{
+      cursor: pointer;
+}
+form p:hover{
+      margin: 10px;
+      padding: 10px;
+      color: white;
+      background-color: #07203a;
+      border-radius: 5px;
+}
+
+
+form h1, label {
+      color: #0a8bd1;
+}
+footer p{
+      font-size: 20px;
+      font-family: monospace;
+}
+
+
+label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      float: left;
+}
+
+input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+}
+input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+}
+
+input[type="submit"] {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      cursor: pointer;
+}
+
+input[type="submit"]:hover {
+      background-color: #45a049;
+}
+
+input::placeholder {
+      color: #737379;
+      font-style: italic;
+      font-family: monospace;
+}
+:root{
+    --bg:#0f1724;
+    --text:#fff;
+    --accent:#ffd54a; /* bulb color */
+    --accent-2:#ff6b6b; /* secondary tint */
+  }
+
+
+.sign {
+      position:relative;
+      padding:28px 36px;
+      backdrop-filter: blur(6px);
+      text-align:center;
+}
+
+  /* main word */
+  .word {
+    font-size: clamp(40px, 7vw, 96px);
+    letter-spacing: 6px;
+    display:inline-block;
+    position:relative;
+    text-transform: lowercase;
+    line-height:1;
+  }
+
+  /* soft neon text base */
+  .word span.letter{
+    display:inline-block;
+    position:relative;
+    padding:0 4px;
+    color: #fff;
+    text-shadow:
+      0 0 6px rgba(255,255,255,0.12),
+      0 0 12px rgba(255,213,74,0.06);
+  }
+
+  /* shiny sweep — clipped to text */
+  .word::after{
+    content:"KIGALI";
+    position:absolute;
+    left:-60%;
+    top:0;
+    bottom:0;
+    width:40%;
+    background: linear-gradient(110deg, rgba(255,255,255,0), rgba(255,255,255,0.85), rgba(255,255,255,0));
+    transform: skewX(-20deg);
+    mix-blend-mode: screen;
+    animation: sweep 3.2s linear infinite;
+    pointer-events:none;
+  }
+
+  @keyframes sweep{
+    0% { left:-60%; opacity:0; }
+    10% { opacity:1; }
+    50% { left:120%; opacity:0.9; }
+    100%{ left:120%; opacity:0; }
+  }
+
+  /* bulb "dots" to the right of each letter */
+  .word span.letter::after{
+    content:"";
+    position:absolute;
+    right:-10px;
+    top:50%;
+    transform:translateY(-50%);
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, #fff, var(--accent) 28%, #a15a00 65%);
+    box-shadow: 0 0 6px rgba(255,213,74,0.9), 0 0 18px rgba(255,213,74,0.25);
+    opacity:0.0; /* bulbs off by default; we animate them on */
+    filter: blur(.2px);
+    transition:opacity .15s ease;
+  }
+
+  /* make the bulbs appear with different delays (JS assigns --d) */
+  .word span.letter{
+    --d: 0s;
+    animation: glowPulse 2.6s linear infinite;
+    animation-delay: var(--d);
+  }
+
+  @keyframes glowPulse{
+    0%   { text-shadow: 0 0 6px rgba(255,255,255,0.08); }
+    6%   { text-shadow: 0 0 18px rgba(255,213,74,0.9), 0 0 40px rgba(255,213,74,0.15); }
+    12%  { text-shadow: 0 0 8px rgba(255,255,255,0.06); }
+    18%  { text-shadow: 0 0 20px rgba(255,107,107,0.85), 0 0 46px rgba(255,107,107,0.12); }
+    30%  { text-shadow: 0 0 6px rgba(255,255,255,0.06); }
+    60%  { text-shadow: 0 0 8px rgba(255,255,255,0.04); }
+    100% { text-shadow: 0 0 6px rgba(255,255,255,0.06); }
+  }
+
+  /* show the bulb when that letter is in its shine window */
+  .word span.letter.active::after{
+    opacity:1;
+    transform:translateY(-50%) scale(1.05);
+    box-shadow: 0 0 12px rgba(255,213,74,1), 0 0 28px rgba(255,213,74,0.35);
+  }
+
+  /* small responsive tweak */
+  @media (max-width:520px){
+    .word::after{ display:none; } /* remove sweep on tiny screens for clarity */
+    .word span.letter::after{ right:-6px; width:7px; height:7px; }
+  }

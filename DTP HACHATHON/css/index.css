@@ -1,0 +1,523 @@
+      body {
+            background-color: #e1e1ec;
+            color: #333;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      h4{
+            font-size: 20px;
+            font-style: italic;
+      }
+      h6
+      h5{
+            color: #007bff;
+      }
+      /* Navbar brand style */
+      .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #087e22;
+      }
+      .collapse{
+            background-color: rgb(248, 247, 239);
+            border: 2px 4px #007bff;
+            box-shadow: 5px 3px rgb(15, 119, 145);
+
+      }
+
+      .navbar-nav .nav-link {
+            font-weight: 500;
+            color: rgb(0, 6, 5);
+            font-weight: bold;
+            font-size: 20px;
+      }
+      .navbar-nav .nav-link:hover,
+      .navbar-nav .nav-link.active {
+            color: #007bff;}
+
+
+      .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #fff;
+            min-width: 160px;
+            box-shadow: 40px 18px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            margin-top: 10px;
+            z-index: 1000;
+      }
+
+      .dropdown-menu a {
+            color: #0073e6;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+      }
+
+      .dropdown-menu a:hover {
+            background-color: #f1f1f1;
+      }
+
+      .show {
+            display: block;
+      }
+      .signin-icon {
+            width: 20px;
+            height: 20px;
+            margin-left: 6px;
+      }
+                  /* Show dropdown on hover */
+      .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+      }
+      @media (min-width: 992px) {
+      .navbar .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0;
+      }
+      }
+
+      input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+      }
+      #chart-container {
+            max-width: 400px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background-color: black;
+            color: white;
+      }
+      .chart{
+            background: url(/images/health3.png);
+      }
+      .chart h3{
+            text-align: center;
+      }
+
+
+      :root{
+            --bg:#0f1724;
+            --text:#fff;
+            --accent:#ffd54a; /* bulb color */
+            --accent-2:#ff6b6b; /* secondary tint */
+      }
+
+
+      .sign {
+            position:relative;
+            padding:10px 10px;
+            border-radius:14px;
+            backdrop-filter: blur(6px);
+            text-align:center;
+            background-color: #0073e6;
+      }
+
+      /* main word */
+      .word {
+            color: wheat;
+            font-weight: bold;
+            font-size: 20px;
+            font-family: cursive;
+            display:inline-block;
+            position:relative;
+            line-height:1;
+      }
+
+      /* soft neon text base */
+      .word span.letter{
+            display:inline-block;
+            position:relative;
+            padding:0 4px;
+            color: #e7dede;
+            text-shadow:
+            0 0 6px rgba(255,255,255,0.12),
+            0 0 12px rgba(255,213,74,0.06);
+      }
+
+      /* shiny sweep — clipped to text */
+      .word::after{
+            content:"Kigali";
+            position:absolute;
+            left:-60%;
+            top:0;
+            bottom:0;
+            width:40%;
+            background: linear-gradient(110deg, rgba(255,255,255,0), rgba(255,255,255,0.85), rgba(255,255,255,0));
+            transform: skewX(-20deg);
+            mix-blend-mode: screen;
+            animation: sweep 5.2s linear infinite;
+            pointer-events:none;
+      }
+      @keyframes sweep{
+            0% { left:-60%; opacity:0; }
+            10% { opacity:1; }
+            50% { left:120%; opacity:0.9; }
+            100%{ left:120%; opacity:0; }
+      }
+
+      /* bulb "dots" to the right of each letter */
+      .word span.letter::after{
+            content:"Rwanda";
+            position:absolute;
+            right:-10px;
+            top:50%;
+            transform:translateY(-50%);
+            width:40px;
+            height:40px;
+            border-radius:50%;
+            background: radial-gradient(circle at 35% 30%, #fff, var(--accent) 28%, #a15a00 65%);
+            box-shadow: 0 0 6px rgba(255,213,74,0.9), 0 0 18px rgba(255,213,74,0.25);
+            opacity:0.0; /* bulbs off by default; we animate them on */
+            filter: blur(.2px);
+            transition:opacity .15s ease;
+      }
+
+      /* make the bulbs appear with different delays (JS assigns --d) */
+      .word span.letter{
+            --d: 0s;
+            animation: glowPulse 2.6s linear infinite;
+            animation-delay: var(--d);
+      }
+
+
+
+      /* show the bulb when that letter is in its shine window */
+      .word span.letter.active::after{
+            opacity:1;
+            transform:translateY(-50%) scale(1.05);
+            box-shadow: 0 0 12px rgba(255,213,74,1), 0 0 28px rgba(255,213,74,0.35);
+      }
+
+      /* small responsive tweak */
+      @media (max-width:520px){
+      .word::after{ display:none; } /* remove sweep on tiny screens for clarity */
+            .word span.letter::after{ right:-6px; width:7px; height:7px; }
+      }
+
+
+
+      .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            padding-top: 100px;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+      }
+      section#page2 h1 {
+            color: #b30d0d;
+            font-family: fantasy;
+      }
+
+      section#page2 {
+            padding: 3rem 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 12px rgb(0 0 0 / 0.1);
+            margin-bottom: 3rem;
+            text-align: center;
+            box-shadow: 3px 4px 6px rgb(15, 119, 145);
+      }
+
+      .image-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 40px;
+      }
+      .image-box {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 4px 5px rgba(0, 0, 0, 0.15);
+            max-width: 350px;
+            text-align: center;
+            cursor: pointer;
+      }
+      .image-box img {
+            width: 100%;
+            max-width: 220px;
+            border-radius: 10px;
+            transition: transform 0.2s;
+      }
+      .image-box:hover img {
+            transform: scale(1.05);
+      }
+
+      .image-box p {
+            margin-top: 10px;
+            font-size: 18px;
+      }
+
+      .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            padding-top: 100px;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+      }
+      .modal-content {
+            background-color: white;
+            color: #333;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 1000px;
+            border-radius: 10px;
+            margin-top: 100px;
+      }
+      .modal p{
+            color: #333;
+            background-color: #d4d2dc;
+            font-style: oblique;
+            border-radius: 5px;
+            padding: 10px;
+      }
+      .modal h2{
+            color: #0073e6;
+      }
+
+      .close {
+            text-align: right;
+            color: red;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+      }
+      .close:hover{
+            color: #222;
+            transition: 1s;
+            translate: 1s;
+      }
+
+      .stars {
+            display: inline-block;
+      }
+
+      .star {
+            font-size: 40px;
+            color: lightgray;
+            cursor: pointer;
+            transition: color 0.2s;
+      }
+      #star1.active{
+            color: #333;
+      }
+      #star2.active{
+            color: rgb(215, 90, 7);
+      }
+      #star3.active{
+            color: rgb(154, 120, 25);
+      }
+      #star4.active{
+            color: gold;
+      }
+      .star.active {
+            color: yellow;
+      }
+
+      /* Confetti style */
+      .confetti {
+            position: fixed;
+            top: -10px;
+            font-size: 20px;
+            animation: fall 3s linear forwards;
+            z-index: 9999;
+      }
+
+      @keyframes fall {
+            to {
+                  transform: translateY(100vh) rotate(360deg);
+                  opacity: 0;
+            }
+      }
+
+
+      #footer {
+            color: rgb(217, 212, 212);
+            clear: both;
+            text-align: center;
+            padding: 20px;
+      }
+
+      form {
+            width: 90%;
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #e7e2e2;
+            box-shadow: 0 0 10px rgba(0, 0, 0);
+      }
+
+      form h1, label {
+            color: #0a8bd1;
+      }
+      footer p{
+            font-size: 20px;
+            font-family: monospace;
+      }
+footer{
+      background-color: ;
+}
+.footerContacts a {
+      font-size: 1.8rem;
+      margin: 0 0.7rem;
+      color: #eee;
+      transition: color 0.3s ease;
+}
+
+.footerContacts a:hover {
+      color: #007bff;
+}
+.lastContent{
+      background-color: #efe8e8;
+      border-radius: 5px;
+}
+.lastContent {
+  position: relative;
+  overflow: hidden;
+  padding: 40px 0;
+}
+
+/* Top-left curved Rwanda flag */
+.lastContent::before {
+  content: "";
+  position: absolute;
+  top: -8vw; /* Moves relative to screen size */
+  left: -8vw;
+  width: 20vw; /* Scales with screen */
+  height: 20vw;
+  background: linear-gradient(to bottom, #00a1de 33%, #fcd116 33%, #fcd116 66%, #20603d 66%);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+/* Bottom-right curved Rwanda flag */
+.lastContent::after {
+  content: "";
+  position: absolute;
+  bottom: -8vw;
+  right: -8vw;
+  width: 20vw;
+  height: 20vw;
+  background: linear-gradient(to bottom, #00a1de 33%, #fcd116 33%, #fcd116 66%, #20603d 66%);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+/* Adjust for small screens */
+@media (max-width: 600px) {
+  .lastContent::before,
+  .lastContent::after {
+    width: 30vw;
+    height: 30vw;
+    top: -12vw;
+    left: -12vw;
+    bottom: -12vw;
+    right: -12vw;
+  }
+}
+      label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            float: left;
+      }
+
+      input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+      }
+      textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+      }
+
+      input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+            background-color: #45a049;
+      }
+
+      input::placeholder {
+            color: #737379;
+            font-style: italic;
+            font-family: monospace;
+      }
+#container{
+      text-align: center;
+}
+.sign {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #00ffea;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .word {
+    font-size: 2rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, green, #00ffea, yellow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s linear infinite;
+    white-space: nowrap;
+  }
+
+  @keyframes shine {
+    0% { background-position: -200px; }
+    100% { background-position: 200px; }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .word {
+      font-size: 1.5rem;
+      white-space: normal;
+    }
+    .sign {
+      padding: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .word {
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+  }
